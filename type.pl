@@ -11,7 +11,8 @@ lookup(Var, [Var:Type | _], Type) :- !.
 lookup(Var, [_|Context], Type) :-
     lookup(Var, Context, Type).
 
-% type(+Expression, +Context, ?Type)
+% type(+Term, +Context, ?Type)
+% check/infer Term has type Type in given Context
 type(var(X), Context, Type) :-
     lookup(X, Context, Type).
 type(lambda(var(X), Body), Context, A -> B) :-
