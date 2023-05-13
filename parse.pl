@@ -26,7 +26,8 @@ expr1(Expr) --> paren_expr(Expr).
 
 paren_expr(Expr) --> ['('], expr(Expr), [')'].
 
-var_parser(var(Token)) --> [Token], { atom_chars(Token, [C|Nums]), char_type(C, alpha), maplist(is_digit, Nums)}.
+var_parser(var(Token)) --> [Token], {valid_variable(Token)}.
+valid_variable(Token) :- atom_chars(Token, [C|Nums]), char_type(C, alpha), maplist(is_digit, Nums).
 abs_parser(lambda(Var, Body)) -->['\\'], var_parser(Var), ['.'], expr(Body).
 
 app_tail(Expr, Expr) --> {true}.
