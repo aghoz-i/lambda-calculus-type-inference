@@ -47,9 +47,12 @@ tokenize(Tokens, Tokens) --> {true}.
 tokenize(Accumulator, Result) --> blanks, allowed_token(Token), {append_item(Accumulator, Token, AppendedAccumulator)}, blanks, tokenize(AppendedAccumulator, Result).
 
 allowed_token(Token) --> variable_token(Token).
-allowed_token('\\') --> [92]. % code number for backslash
-allowed_token('.') --> [46]. % code number for dot
+allowed_token('\\') --> `\\`. 
+allowed_token('.') --> `.`.
+allowed_token('(') --> `(`.
+allowed_token(')') --> `)`.
 variable_token(Token) --> alpha(C), digits(Digits), {atom_codes(Token, [C|Digits])}.
+
 alpha(C, [C|Rest], Rest) :-
 	code_type(C, alpha).
 
