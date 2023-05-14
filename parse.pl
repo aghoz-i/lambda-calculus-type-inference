@@ -1,3 +1,4 @@
+:- module(parse, [tokenize/2, token_to_lambda_calculus_expr/2, atom_to_lc/2]).
 % tokenize and parse a string/atom to a lambda expression
 
 % current lambda expresion structure is consisted of
