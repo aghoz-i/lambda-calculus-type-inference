@@ -23,6 +23,6 @@ main :-
     send(D, open).
 
 display(TextBox, Text) :-
-    type_of_expr(Text, Type),
-    format(atom(Formatted), "~w", [Type]),
+    type_of_expr(Text, Type), numbervars(Type, 0, End),
+    format(atom(Formatted), "~W", [Type, [numbervars(true)]]),
     send(TextBox, selection, Formatted).
